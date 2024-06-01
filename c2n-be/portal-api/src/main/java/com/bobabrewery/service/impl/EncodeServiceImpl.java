@@ -1,12 +1,10 @@
 package com.bobabrewery.service.impl;
 
 import com.bobabrewery.service.EncodeService;
+import com.bobabrewery.util.CredentialsUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.web.reactive.function.client.WebClient;
-
-import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 
 /**
  * @author PailieXiangLong
@@ -15,22 +13,13 @@ import javax.annotation.PostConstruct;
 @Service
 public class EncodeServiceImpl implements EncodeService {
 
-    @Value("${encode.server}")
-    private String baseUrl;
-    private WebClient webClient;
-
-    @PostConstruct
-    private void init() {
-        webClient = WebClient.builder().baseUrl(baseUrl).build();
-    }
+    @Resource
+    private CredentialsUtils credentialsUtils;
 
     @Override
     public String sign(String hexString) {
-        return webClient.post()
-                .uri(uriBuilder -> uriBuilder.path("/encode/sign").port(8081)
-                        .queryParam("hex", hexString).build())
-                .retrieve()
-                .bodyToMono(String.class)
-                .block();
+        log.info("hexString={}", hexString);
+        return credentialsUtils.getSign(hexString);
+
     }
 }
