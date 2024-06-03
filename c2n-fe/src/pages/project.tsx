@@ -667,11 +667,11 @@ export default function Pool({ Component, pageProps }: AppProps) {
             </AppPopover>
           </Col>
           <Col span={isDesktopOrLaptop ? 12 : 24} className={styles['value']}>
-            {
-              !allocationTop || allocationTop == 0
-                ? <><Spin style={{ verticalAlign: 'text-bottom' }}></Spin> <span>Calculating...</span></>
-                : <>{seperateNumWithComma(formatEther(allocationTop, 2))} {projectInfo.symbol}</>
-            }
+            {/*{*/}
+            {/*  !allocationTop || allocationTop == 0*/}
+            {/*    ? <><Spin style={{ verticalAlign: 'text-bottom' }}></Spin> <span>Calculating...</span></>*/}
+            {/*    : <>{seperateNumWithComma(formatEther(allocationTop, 2))} {projectInfo.symbol}</>*/}
+            {/*}*/}
           </Col>
         </Row>
         {/* visible after participation */}
